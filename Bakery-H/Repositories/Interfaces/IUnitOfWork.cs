@@ -2,7 +2,7 @@
 {
     public interface IUnitOfWork
     {
-        IAngajatiRepository Angajati { get; set; }
+        //IAngajatiRepository Angajati { get; set; }
         ILocatiiRepository Locatii { get; set; }
     }
 }

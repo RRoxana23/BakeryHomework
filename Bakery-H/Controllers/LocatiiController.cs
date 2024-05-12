@@ -15,7 +15,7 @@ namespace Bakery_H.Controllers
         }
 
         // GET: Locatii
-        public async Task<IActionResult> Index()
+        /*public async Task<IActionResult> Index()
         {
             var locatii = await _locatiiService.GetAllLocatii();
             return View(locatii);
@@ -47,11 +47,11 @@ namespace Bakery_H.Controllers
         // POST: Locatii/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("IdLocatie,Nume,Adresa,NumarTelefon")] Locatii locatii)
+        public IActionResult Create([Bind("IdLocatie,Nume,Adresa,NumarTelefon")] Locatii locatii)
         {
             if (ModelState.IsValid)
             {
-                await _locatiiService.CreateLocatie(locatii);
+                _locatiiService.CreateLocatie(locatii);
                 return RedirectToAction(nameof(Index));
             }
             return View(locatii);
@@ -76,7 +76,7 @@ namespace Bakery_H.Controllers
         // POST: Locatii/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("IdLocatie,Nume,Adresa,NumarTelefon")] Locatii locatii)
+        public IActionResult Edit(int id, [Bind("IdLocatie,Nume,Adresa,NumarTelefon")] Locatii locatii)
         {
             if (id != locatii.IdLocatie)
             {
@@ -85,7 +85,7 @@ namespace Bakery_H.Controllers
 
             if (ModelState.IsValid)
             {
-                await _locatiiService.UpdateLocatie(locatii);
+                _locatiiService.UpdateLocatie(locatii);
                 return RedirectToAction(nameof(Index));
             }
             return View(locatii);
@@ -111,10 +111,10 @@ namespace Bakery_H.Controllers
         // POST: Locatii/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        public IActionResult DeleteConfirmed(Locatii locatie)
         {
-            await _locatiiService.DeleteLocatie(id);
+            _locatiiService.DeleteLocatie(locatie);
             return RedirectToAction(nameof(Index));
-        }
+        }*/
     }
 }

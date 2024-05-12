@@ -2,12 +2,9 @@
 
 namespace Bakery_H.Repositories.Interfaces
 {
-    public interface ILocatiiRepository
+    public interface ILocatiiRepository: IRepository<Locatii>
     {
         Task<IEnumerable<Locatii>> GetAll();
         Task<Locatii> GetById(int id);
-        Task Add(Locatii locatie);
-        Task Update(Locatii locatie);
-        Task Delete(int id);
     }
 }

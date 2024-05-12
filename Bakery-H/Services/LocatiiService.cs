@@ -8,36 +8,36 @@ namespace Bakery_H.Services
 {
     public class LocatiiService : ILocatiiService
     {
-        private readonly ILocatiiRepository _locatiiRepository;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public LocatiiService(ILocatiiRepository locatiiRepository)
+        public LocatiiService(IUnitOfWork unitOfWork)
         {
-            _locatiiRepository = locatiiRepository;
+            _unitOfWork = unitOfWork;
         }
 
-        public async Task<IEnumerable<Locatii>> GetAllLocatii()
+        /*public async Task<IEnumerable<Locatii>> GetAllLocatii()
         {
-            return await _locatiiRepository.GetAll();
+            return await _unitOfWork.Locatii.GetAll();
         }
 
         public async Task<Locatii> GetLocatieById(int id)
         {
-            return await _locatiiRepository.GetById(id);
+            return await _unitOfWork.Locatii.GetById(id);
         }
 
-        public async Task CreateLocatie(Locatii locatie)
+        public void CreateLocatie(Locatii locatie)
         {
-            await _locatiiRepository.Add(locatie);
+            _unitOfWork.Locatii.Add(locatie);
         }
 
-        public async Task UpdateLocatie(Locatii locatie)
+        public void UpdateLocatie(Locatii locatie)
         {
-            await _locatiiRepository.Update(locatie);
+            _unitOfWork.Locatii.Update(locatie);
         }
 
-        public async Task DeleteLocatie(int id)
+        public void DeleteLocatie(Locatii locatie)
         {
-            await _locatiiRepository.Delete(id);
-        }
+            _unitOfWork.Locatii.Delete(locatie);
+        }*/
     }
 }
