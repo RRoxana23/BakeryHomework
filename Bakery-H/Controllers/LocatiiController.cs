@@ -17,7 +17,7 @@ namespace Bakery_H.Controllers
         // GET: Locatii
         public async Task<IActionResult> Index()
         {
-            var locatii = await _locatiiService.GetAllLocatii();
+            var locatii = await _locatiiService.GetAllLocatiiAsync();
             return View(locatii);
         }
 
@@ -29,7 +29,7 @@ namespace Bakery_H.Controllers
                 return NotFound();
             }
 
-            var locatii = await _locatiiService.GetLocatieById(id.Value);
+            var locatii = await _locatiiService.GetLocatieByIdAsync(id.Value);
             if (locatii == null)
             {
                 return NotFound();
@@ -51,7 +51,7 @@ namespace Bakery_H.Controllers
         {
             if (ModelState.IsValid)
             {
-                _locatiiService.CreateLocatie(locatii);
+                _locatiiService.CreateLocatieAsync(locatii);
                 return RedirectToAction(nameof(Index));
             }
             return View(locatii);
@@ -65,7 +65,7 @@ namespace Bakery_H.Controllers
                 return NotFound();
             }
 
-            var locatii = await _locatiiService.GetLocatieById(id.Value);
+            var locatii = await _locatiiService.GetLocatieByIdAsync(id.Value);
             if (locatii == null)
             {
                 return NotFound();
@@ -85,7 +85,7 @@ namespace Bakery_H.Controllers
 
             if (ModelState.IsValid)
             {
-                _locatiiService.UpdateLocatie(locatii);
+                _locatiiService.UpdateLocatieAsync(locatii);
                 return RedirectToAction(nameof(Index));
             }
             return View(locatii);
@@ -99,7 +99,7 @@ namespace Bakery_H.Controllers
                 return NotFound();
             }
 
-            var locatii = await _locatiiService.GetLocatieById(id.Value);
+            var locatii = await _locatiiService.GetLocatieByIdAsync(id.Value);
             if (locatii == null)
             {
                 return NotFound();
@@ -111,9 +111,9 @@ namespace Bakery_H.Controllers
         // POST: Locatii/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public IActionResult DeleteConfirmed(Locatii locatie)
+        public IActionResult DeleteConfirmed(int id)
         {
-            _locatiiService.DeleteLocatie(locatie);
+            _locatiiService.DeleteLocatieAsync(id);
             return RedirectToAction(nameof(Index));
         }
     }

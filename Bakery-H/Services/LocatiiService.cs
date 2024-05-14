@@ -15,29 +15,29 @@ namespace Bakery_H.Services
             _unitOfWork = unitOfWork;
         }
 
-        public async Task<IEnumerable<Locatii>> GetAllLocatii()
+        public async Task<IEnumerable<Locatii>> GetAllLocatiiAsync()
         {
             return await _unitOfWork.Locatii.GetAll();
         }
 
-        public async Task<Locatii> GetLocatieById(int id)
+        public async Task<Locatii> GetLocatieByIdAsync(int id)
         {
             return await _unitOfWork.Locatii.GetById(id);
         }
 
-        public void CreateLocatie(Locatii locatie)
+        public async Task CreateLocatieAsync(Locatii locatie)
         {
-            _unitOfWork.Locatii.Add(locatie);
+            await _unitOfWork.Locatii.AddAsync(locatie);
         }
 
-        public void UpdateLocatie(Locatii locatie)
+        public async Task UpdateLocatieAsync(Locatii locatie)
         {
-            _unitOfWork.Locatii.Update(locatie);
+            await _unitOfWork.Locatii.UpdateAsync(locatie);
         }
 
-        public void DeleteLocatie(Locatii locatie)
+        public async Task DeleteLocatieAsync(int id)
         {
-            _unitOfWork.Locatii.Delete(locatie);
+            await _unitOfWork.Locatii.DeleteAsync(id);
         }
     }
 }

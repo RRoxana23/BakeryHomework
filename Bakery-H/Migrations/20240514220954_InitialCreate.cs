@@ -3,6 +3,8 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
+#pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
+
 namespace Bakery_H.Migrations
 {
     /// <inheritdoc />
@@ -33,6 +35,7 @@ namespace Bakery_H.Migrations
                     Nume = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Prenume = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     NumarTelefon = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ProfileImage = table.Column<byte[]>(type: "varbinary(max)", nullable: false),
                     UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     Email = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
@@ -319,6 +322,15 @@ namespace Bakery_H.Migrations
                         principalTable: "MetodePlata",
                         principalColumn: "IdMetodaPlata",
                         onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.InsertData(
+                table: "AspNetRoles",
+                columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
+                values: new object[,]
+                {
+                    { new Guid("128d88bf-2cf8-4173-890f-05e8e2d438f8"), null, "Client", "CLIENT" },
+                    { new Guid("e5951cb6-af9e-4748-bb3b-b9b77345df0d"), null, "Administrator", "ADMINISTRATOR" }
                 });
 
             migrationBuilder.CreateIndex(

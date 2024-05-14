@@ -1,13 +1,15 @@
 ﻿using Bakery_Homework.Models;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Bakery_H.Services.Interfaces
 {
     public interface ILocatiiService
     {
-        Task<IEnumerable<Locatii>> GetAllLocatii();
-        Task<Locatii> GetLocatieById(int id);
-        void CreateLocatie(Locatii locatie);
-        void UpdateLocatie(Locatii locatie);
-        void DeleteLocatie(Locatii locatie);
+        Task<IEnumerable<Locatii>> GetAllLocatiiAsync();
+        Task<Locatii> GetLocatieByIdAsync(int id);
+        Task CreateLocatieAsync(Locatii locatie);
+        Task UpdateLocatieAsync(Locatii locatie);
+        Task DeleteLocatieAsync(int id);
     }
 }

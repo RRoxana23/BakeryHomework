@@ -509,3 +509,7 @@ C:\Users\Rox\Desktop\BakeryHomework\Bakery-H\bin\Debug\net8.0\Microsoft.AspNetCo
 C:\Users\Rox\Desktop\BakeryHomework\Bakery-H\bin\Debug\net8.0\Microsoft.Extensions.Identity.Core.dll
 C:\Users\Rox\Desktop\BakeryHomework\Bakery-H\bin\Debug\net8.0\Microsoft.Extensions.Identity.Stores.dll
 C:\Users\Rox\Desktop\BakeryHomework\Bakery-H\bin\Debug\net8.0\Microsoft.Extensions.Options.dll
+C:\Users\Rox\Desktop\BakeryHomework\Bakery-H\obj\Debug\net8.0\Bakery-H.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\Rox\Desktop\BakeryHomework\Bakery-H\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.Google.dll
+C:\Users\Rox\Desktop\BakeryHomework\Bakery-H\bin\Debug\net8.0\Microsoft.AspNetCore.Identity.UI.dll
+C:\Users\Rox\Desktop\BakeryHomework\Bakery-H\bin\Debug\net8.0\Microsoft.Extensions.FileProviders.Embedded.dll

@@ -5,6 +5,14 @@
       "PackagePath": "staticwebassets\\Bakery-H.bundle.scp.css"
     },
     {
+      "Id": "C:\\Users\\Rox\\Desktop\\BakeryHomework\\Bakery-H\\wwwroot\\css\\Login.css",
+      "PackagePath": "staticwebassets\\css\\Login.css"
+    },
+    {
+      "Id": "C:\\Users\\Rox\\Desktop\\BakeryHomework\\Bakery-H\\wwwroot\\css\\Register.css",
+      "PackagePath": "staticwebassets\\css\\Register.css"
+    },
+    {
       "Id": "C:\\Users\\Rox\\Desktop\\BakeryHomework\\Bakery-H\\wwwroot\\css\\site.css",
       "PackagePath": "staticwebassets\\css\\site.css"
     },
