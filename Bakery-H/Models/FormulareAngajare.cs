@@ -18,9 +18,5 @@ namespace Bakery_Homework.Models
         [ForeignKey("Locatie")]
         public int LocatieId { get; set; }
         public Locatii? Locatie { get; set; }
-
-        [ForeignKey("Angajat")]
-        public int AngajatId { get; set; }
-        public Angajati? Angajat { get; set; }
     }
 }

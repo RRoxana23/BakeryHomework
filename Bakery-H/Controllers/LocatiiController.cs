@@ -15,7 +15,7 @@ namespace Bakery_H.Controllers
         }
 
         // GET: Locatii
-        /*public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index()
         {
             var locatii = await _locatiiService.GetAllLocatii();
             return View(locatii);
@@ -115,6 +115,6 @@ namespace Bakery_H.Controllers
         {
             _locatiiService.DeleteLocatie(locatie);
             return RedirectToAction(nameof(Index));
-        }*/
+        }
     }
 }

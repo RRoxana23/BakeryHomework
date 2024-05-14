@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
+using Bakery_H.Models;
 
 namespace Bakery_Homework.Models
 {
@@ -8,11 +9,8 @@ namespace Bakery_Homework.Models
     {
         [Key]
         public int IdAngajat { get; set; }
-        public string? Nume { get; set; }
-        public string? Prenume { get; set; }
         public string? Functie { get; set; }
         public DateTime DataAngajarii { get; set; }
-        public string? NumarTelefon { get; set; }
 
         [ForeignKey("Locatie")]
         public int LocatieId { get; set; }
@@ -22,7 +20,12 @@ namespace Bakery_Homework.Models
         public int? FormulareAngajareId { get; set; }
         public FormulareAngajare? FormularAngajare { get; set; }
 
+        [ForeignKey("Comenzi")]
         public int? ComandaId { get; set; }
         public Comenzi? Comanda { get; set; }
+
+        [ForeignKey("User")]
+        public Guid userId { get; set; }
+        public virtual User User { get; set; }
     }
 }

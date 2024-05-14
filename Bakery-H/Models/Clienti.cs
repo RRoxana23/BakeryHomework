@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Bakery_H.Models;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Bakery_Homework.Models
 {
@@ -6,10 +8,11 @@ namespace Bakery_Homework.Models
     {
         [Key]
         public int IdClient { get; set; }
-        public string? Nume { get; set; }
-        public string? Prenume { get; set; }
         public string? Adresa { get; set; }
         public string? Email { get; set; }
-        public string? NumarTelefon { get; set; }
+
+        [ForeignKey("User")]
+        public Guid userId { get; set; }
+        public virtual User User { get; set; }
     }
 }

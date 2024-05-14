@@ -15,6 +15,8 @@ builder.Services.AddDbContext<BakeryDbContext>(options =>
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
+builder.Services.AddScoped<DbContext, BakeryDbContext>();
+
 builder.Services.AddScoped<ILocatiiService, LocatiiService>();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped<ILocatiiRepository, LocatiiRepository>();

@@ -15,7 +15,7 @@ namespace Bakery_H.Services
             _unitOfWork = unitOfWork;
         }
 
-        /*public async Task<IEnumerable<Locatii>> GetAllLocatii()
+        public async Task<IEnumerable<Locatii>> GetAllLocatii()
         {
             return await _unitOfWork.Locatii.GetAll();
         }
@@ -38,6 +38,6 @@ namespace Bakery_H.Services
         public void DeleteLocatie(Locatii locatie)
         {
             _unitOfWork.Locatii.Delete(locatie);
-        }*/
+        }
     }
 }

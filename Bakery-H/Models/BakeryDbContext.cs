@@ -1,8 +1,12 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Bakery_H.Models;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.General;
 
 namespace Bakery_Homework.Models
 {
-    public class BakeryDbContext : DbContext
+    public class BakeryDbContext : IdentityDbContext<User, IdentityRole<Guid>, Guid>
     {
         public BakeryDbContext() : base()
         {
@@ -19,6 +23,7 @@ namespace Bakery_Homework.Models
         public DbSet<Locatii> Locatii { get; set; }
         public DbSet<FormulareAngajare> FormulareAngajare { get; set; }
         public DbSet<MetodePlata> MetodePlata { get; set; }
+        public DbSet<User> User { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -28,10 +33,10 @@ namespace Bakery_Homework.Models
                .HasForeignKey(f => f.LocatieId)
                .OnDelete(DeleteBehavior.Restrict);
 
-            modelBuilder.Entity<FormulareAngajare>()
-                .HasOne(f => f.Angajat)
+            modelBuilder.Entity<Comenzi>()
+                .HasOne(f => f.Client)
                 .WithMany()
-                .HasForeignKey(f => f.AngajatId)
+                .HasForeignKey(f => f.ClientId)
                 .OnDelete(DeleteBehavior.Restrict);
             base.OnModelCreating(modelBuilder);
         }
