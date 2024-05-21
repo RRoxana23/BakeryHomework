@@ -1,0 +1,54 @@
+﻿.right-part-content > *:not(img) {
+    margin: 2.7% 8% 0 8%;
+}
+
+.right-part-content img {
+    width: 88%;
+    height: 46vh;
+    min-height: 300px;
+    margin: 0 6% 0 6%;
+    border-radius: 8%;
+    object-fit: cover;
+}
+
+.page-description {
+    font-size: 2.5vh;
+    margin: 2.5% 11% 0 11%;
+}
+
+@media screen and (max-width: 1024px) {
+    .page-title {
+        font-size: 40px;
+    }
+
+    .page-description {
+        font-size: 16px;
+    }
+}
+
+.page-title {
+    font-size: 28px;
+    margin: 7.5% 15% 0 7.5%;
+}
+
+.page-description {
+    color: #696969;
+}
+
+.order-now-button {
+    font-size: 13px;
+    font-weight: bold;
+    text-align: center;
+    padding: 7px 12px 7px 12px;
+    margin: 2.7% 8% 2.7% 8%;
+    color: #cf743f;
+    border: 2px solid #cf743f;
+    border-radius: 20px;
+    background-color: white;
+    cursor: pointer;
+}
+
+    .order-now-button:hover {
+        background-color: #cf743f;
+        color: white;
+    }

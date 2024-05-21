@@ -1,22 +1,56 @@
-html {
-  font-size: 14px;
-}
-
-@media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
-}
-
-.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
-}
-
-html {
-  position: relative;
-  min-height: 100%;
+* {
+    box-sizing: border-box;
 }
 
 body {
-  margin-bottom: 60px;
+    margin: 0;
+    height: 100%;
+    color: black;
+    font-family: 'MaisonNeue', sans-serif;
+    font-size: 17.5px;
+    transition: font-size 0.5s;
+}
+
+.page-content {
+    display: flex;
+    flex-direction: row;
+}
+
+.left-part {
+    height: 100vh;
+    width: 35%;
+}
+
+.left-part img {
+    height: 100vh;
+    width: 100%;
+    vertical-align: bottom;
+    filter: opacity(85%);
+    border-radius: 5% 5% 0 0;
+}
+
+.right-part {
+    width: 65%;
+}
+
+.right-part-content {
+    width: 100%;
+}
+
+@media screen and (max-width: 1024px) {
+    .left-part {
+        display: none;
+    }
+
+    .right-part {
+        width: 100%;
+    }
+
+    .right-part-content img {
+        height: 25vh;
+    }
+
+    .page-title {
+        font-size: 22px;
+    }
 }

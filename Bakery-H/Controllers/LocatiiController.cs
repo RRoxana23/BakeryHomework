@@ -2,9 +2,11 @@ using Bakery_Homework.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using Bakery_H.Services.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Bakery_H.Controllers
 {
+    [Authorize(Roles = "Administrator,Client")]
     public class LocatiiController : Controller
     {
         private readonly ILocatiiService _locatiiService;

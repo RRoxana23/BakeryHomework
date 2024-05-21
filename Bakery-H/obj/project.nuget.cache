@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "DZU5zZ8MFIfgWYZJfG7SkLSgwA1ZGiXwBNkT9aMiRXKwuqLm9CJ1xeExtgDo0iycMSBR6TU0zKrrcBjLPaTKfA==",
+  "dgSpecHash": "a269/1Uv3GLCANLT14sjP/Zg31kda0IDJ1jzCdZ4OXLaXtMnZQchDRueNJ/mcHz2m1AGJNoKL/gBNlOt/SKz+g==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Rox\\Desktop\\BakeryHomework\\Bakery-H\\Bakery-H.csproj",
+  "projectFilePath": "C:\\Users\\Rox\\BakeryHomework\\Bakery-H\\Bakery-H.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Rox\\.nuget\\packages\\azure.core\\1.35.0\\azure.core.1.35.0.nupkg.sha512",
     "C:\\Users\\Rox\\.nuget\\packages\\azure.identity\\1.10.3\\azure.identity.1.10.3.nupkg.sha512",

@@ -1,41 +1,45 @@
 ﻿@model Bakery_H.Models.UserRegistrationModel
 
-<link rel="stylesheet" href="~/css/Register.css" />
+<head>
+    <link rel="stylesheet" href="~/css/Register.css">
+</head>
 
-<h1>Register</h1>
+<div class="container">
+    <h1 class="text-center">Register</h1>
+    <form asp-action="Register" enctype="multipart/form-data">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
-<form asp-action="Register" enctype="multipart/form-data">
-    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group">
+            <label asp-for="Email">Email</label>
+            <input asp-for="Email" class="form-control" />
+            <span asp-validation-for="Email" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Password">Password</label>
+            <input asp-for="Password" type="password" class="form-control" />
+            <span asp-validation-for="Password" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Nume">First Name</label>
+            <input asp-for="Nume" class="form-control" />
+            <span asp-validation-for="Nume" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Prenume">Last Name</label>
+            <input asp-for="Prenume" class="form-control" />
+            <span asp-validation-for="Prenume" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="ProfilePicture">Profile Picture</label>
+            <input asp-for="ProfilePicture" type="file" class="form-control" accept="image/*" />
+            <span asp-validation-for="ProfilePicture" class="text-danger"></span>
+        </div>
 
-    <div>
-        <label asp-for="Email"></label>
-        <input asp-for="Email" class="form-control" />
-        <span asp-validation-for="Email" class="text-danger"></span>
-    </div>
-    <div>
-        <label asp-for="Password"></label>
-        <input asp-for="Password" type="password" class="form-control" />
-        <span asp-validation-for="Password" class="text-danger"></span>
-    </div>
-    <div>
-        <label asp-for="Nume"></label>
-        <input asp-for="Nume" class="form-control" />
-        <span asp-validation-for="Nume" class="text-danger"></span>
-    </div>
-    <div>
-        <label asp-for="Prenume"></label>
-        <input asp-for="Prenume" class="form-control" />
-        <span asp-validation-for="Prenume" class="text-danger"></span>
-    </div>
-
-    <div>
-        <label asp-for="ProfilePicture"></label>
-        <input asp-for="ProfilePicture" type="file" class="form-control" accept="image/*" />
-        <span asp-validation-for="ProfilePicture" class="text-danger"></span>
-    </div>
-
-    <button type="submit" class="btn btn-primary">Register</button>
-</form>
+        <div class="form-group text-center">
+            <button type="submit" class="btn btn-primary">Register</button>
+        </div>
+    </form>
+</div>
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />

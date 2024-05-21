@@ -1,15 +1,71 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
     var successMessage = TempData["SuccessMessage"] as string;
+    Layout = "_Layout";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-    @if (!string.IsNullOrEmpty(successMessage))
-    {
-        <div class="alert alert-success" role="alert">
-            @successMessage
+<head>
+    <link rel="stylesheet" href="~/css/page-content.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+
+@if (!string.IsNullOrEmpty(successMessage))
+{
+    <div id="welcomeBackModal" class="modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Welcome Back!</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>@successMessage</p>
+                </div>
+            </div>
         </div>
-    }
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('#welcomeBackModal').modal('show');
+            setTimeout(function () {
+                $('#welcomeBackModal').modal('hide');
+            }, 2000);
+        });
+    </script>
+}
+
+<div class="page-content">
+    <div class="left-part">
+        <img src="~/icons/menu-page-img.jpg" alt="Our bakery">
+    </div>
+
+    <div class="right-part">
+        <div class="right-part-content">
+            <img src="~/icons/christmas-pic.png" alt="Christmas spirit">
+
+            <div class="page-title">
+                From our warm and crusty bread to our delightful pastries, each bite tells a story of craftsmanship and dedication.
+            </div>
+
+            <div class="page-description">
+                Explore our diverse selection, savor the aromas, and experience the joy of a bakery that takes pride in delivering the finest baked goods to your table. At Bakery-The Shop, we blend the perfect ingredients to create moments of pure delight. Join us on this culinary journey, where every visit is a celebration of flavor and freshness.
+            </div>
+
+            <button class="order-now-button" onclick="redirectToPage('@Url.Action("Index", "Menu")')">
+                Order now
+            </button>
+        </div>
+    </div>
 </div>
+
+<script>
+    function redirectToPage(link) {
+        window.location.href = link;
+    }
+</script>

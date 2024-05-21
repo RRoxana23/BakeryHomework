@@ -25,9 +25,21 @@ builder.Services.AddDbContext<BakeryDbContext>(options =>
 builder.Services.AddControllersWithViews();
 
 // Register Identity services
-builder.Services.AddIdentity<User, IdentityRole<Guid>>()
-    .AddEntityFrameworkStores<BakeryDbContext>()
-    .AddDefaultTokenProviders();
+builder.Services.AddIdentity<User, IdentityRole<Guid>>(options =>
+{
+    options.Password.RequireDigit = true;
+    options.Password.RequiredLength = 5;
+    options.Password.RequireNonAlphanumeric = true;
+    options.Password.RequireUppercase = false;
+    options.Password.RequireLowercase = true;
+    options.Password.RequiredUniqueChars = 2;
+
+    options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);
+    options.Lockout.MaxFailedAccessAttempts = 5;
+    options.Lockout.AllowedForNewUsers = true;
+})
+.AddEntityFrameworkStores<BakeryDbContext>()
+.AddDefaultTokenProviders();
 
 // Add custom services and repositories
 builder.Services.AddScoped<DbContext, BakeryDbContext>();

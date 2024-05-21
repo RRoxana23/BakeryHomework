@@ -8922,11 +8922,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Rox\\Desktop\\BakeryHomework\\Bakery-H\\Bakery-H.csproj",
+      "projectUniqueName": "C:\\Users\\Rox\\BakeryHomework\\Bakery-H\\Bakery-H.csproj",
       "projectName": "Bakery-H",
-      "projectPath": "C:\\Users\\Rox\\Desktop\\BakeryHomework\\Bakery-H\\Bakery-H.csproj",
+      "projectPath": "C:\\Users\\Rox\\BakeryHomework\\Bakery-H\\Bakery-H.csproj",
       "packagesPath": "C:\\Users\\Rox\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Rox\\Desktop\\BakeryHomework\\Bakery-H\\obj\\",
+      "outputPath": "C:\\Users\\Rox\\BakeryHomework\\Bakery-H\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Rox\\AppData\\Roaming\\NuGet\\NuGet.Config",

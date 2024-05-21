@@ -17,87 +17,87 @@ build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = Bakery_H
 build_property.RootNamespace = Bakery_H
-build_property.ProjectDir = C:\Users\Rox\Desktop\BakeryHomework\Bakery-H\
+build_property.ProjectDir = C:\Users\Rox\BakeryHomework\Bakery-H\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 8.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\Rox\Desktop\BakeryHomework\Bakery-H
+build_property.MSBuildProjectDirectory = C:\Users\Rox\BakeryHomework\Bakery-H
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/Rox/Desktop/BakeryHomework/Bakery-H/Views/Angajati/Create.cshtml]
+[C:/Users/Rox/BakeryHomework/Bakery-H/Views/Angajati/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQW5nYWphdGlcQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Rox/Desktop/BakeryHomework/Bakery-H/Views/Angajati/Delete.cshtml]
+[C:/Users/Rox/BakeryHomework/Bakery-H/Views/Angajati/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQW5nYWphdGlcRGVsZXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Rox/Desktop/BakeryHomework/Bakery-H/Views/Angajati/Details.cshtml]
+[C:/Users/Rox/BakeryHomework/Bakery-H/Views/Angajati/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQW5nYWphdGlcRGV0YWlscy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Rox/Desktop/BakeryHomework/Bakery-H/Views/Angajati/Edit.cshtml]
+[C:/Users/Rox/BakeryHomework/Bakery-H/Views/Angajati/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQW5nYWphdGlcRWRpdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Rox/Desktop/BakeryHomework/Bakery-H/Views/Angajati/Index.cshtml]
+[C:/Users/Rox/BakeryHomework/Bakery-H/Views/Angajati/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQW5nYWphdGlcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Rox/Desktop/BakeryHomework/Bakery-H/Views/Home/Index.cshtml]
+[C:/Users/Rox/BakeryHomework/Bakery-H/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Rox/Desktop/BakeryHomework/Bakery-H/Views/Home/Privacy.cshtml]
+[C:/Users/Rox/BakeryHomework/Bakery-H/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Rox/Desktop/BakeryHomework/Bakery-H/Views/Locatii/Create.cshtml]
+[C:/Users/Rox/BakeryHomework/Bakery-H/Views/Locatii/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG9jYXRpaVxDcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Rox/Desktop/BakeryHomework/Bakery-H/Views/Locatii/Delete.cshtml]
+[C:/Users/Rox/BakeryHomework/Bakery-H/Views/Locatii/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG9jYXRpaVxEZWxldGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Rox/Desktop/BakeryHomework/Bakery-H/Views/Locatii/Details.cshtml]
+[C:/Users/Rox/BakeryHomework/Bakery-H/Views/Locatii/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG9jYXRpaVxEZXRhaWxzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Rox/Desktop/BakeryHomework/Bakery-H/Views/Locatii/Edit.cshtml]
+[C:/Users/Rox/BakeryHomework/Bakery-H/Views/Locatii/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG9jYXRpaVxFZGl0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Rox/Desktop/BakeryHomework/Bakery-H/Views/Locatii/Index.cshtml]
+[C:/Users/Rox/BakeryHomework/Bakery-H/Views/Locatii/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG9jYXRpaVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Rox/Desktop/BakeryHomework/Bakery-H/Views/Shared/Error.cshtml]
+[C:/Users/Rox/BakeryHomework/Bakery-H/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Rox/Desktop/BakeryHomework/Bakery-H/Views/Shared/_ValidationScriptsPartial.cshtml]
+[C:/Users/Rox/BakeryHomework/Bakery-H/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Rox/Desktop/BakeryHomework/Bakery-H/Views/User/Login.cshtml]
+[C:/Users/Rox/BakeryHomework/Bakery-H/Views/User/Login.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlclxMb2dpbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Rox/Desktop/BakeryHomework/Bakery-H/Views/User/Register.cshtml]
+[C:/Users/Rox/BakeryHomework/Bakery-H/Views/User/Register.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlclxSZWdpc3Rlci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Rox/Desktop/BakeryHomework/Bakery-H/Views/_ViewImports.cshtml]
+[C:/Users/Rox/BakeryHomework/Bakery-H/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Rox/Desktop/BakeryHomework/Bakery-H/Views/_ViewStart.cshtml]
+[C:/Users/Rox/BakeryHomework/Bakery-H/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Rox/Desktop/BakeryHomework/Bakery-H/Views/Shared/_Layout.cshtml]
+[C:/Users/Rox/BakeryHomework/Bakery-H/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-u2m0wijcur
