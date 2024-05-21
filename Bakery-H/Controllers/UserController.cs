@@ -51,7 +51,7 @@ namespace Bakery_H.Controllers
 
                 if (result.Succeeded)
                 {
-                    await _userManager.AddToRoleAsync(user, "Client"); // Default role
+                    await _userManager.AddToRoleAsync(user, "Client"); 
                     return RedirectToAction("Login");
                 }
 
@@ -61,7 +61,6 @@ namespace Bakery_H.Controllers
                 }
             }
 
-            // Log errors for debugging
             foreach (var state in ModelState)
             {
                 foreach (var error in state.Value.Errors)
@@ -120,7 +119,6 @@ namespace Bakery_H.Controllers
             return RedirectToAction("Profile");
         }
 
-        // Exemplu de metodă într-un controller pentru a returna imaginea de profil
         public async Task<IActionResult> ProfilePicture(string userId)
         {
             var user = await _userManager.FindByIdAsync(userId);
@@ -129,7 +127,7 @@ namespace Bakery_H.Controllers
                 return NotFound();
             }
 
-            return File(user.ProfileImage, "image/jpeg"); // Schimbă tipul de conținut în funcție de formatul imaginii
+            return File(user.ProfileImage, "image/jpeg");
         }
 
 

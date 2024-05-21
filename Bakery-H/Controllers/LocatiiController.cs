@@ -87,25 +87,21 @@ namespace Bakery_H.Controllers
 
             if (ModelState.IsValid)
             {
-                // Obțineți locația curentă din baza de date
                 var existingLocatie = await _locatiiService.GetLocatieByIdAsync(id);
                 if (existingLocatie == null)
                 {
                     return NotFound();
                 }
 
-                // Actualizați doar proprietățile care pot fi modificate
                 existingLocatie.Nume = locatii.Nume;
                 existingLocatie.Adresa = locatii.Adresa;
                 existingLocatie.NumarTelefon = locatii.NumarTelefon;
 
-                // Verificați dacă s-a trimis o imagine nouă; în caz afirmativ, nu o actualizați
                 if (locatii.Image != null)
                 {
                     existingLocatie.Image = locatii.Image;
                 }
 
-                // Actualizați locația în baza de date
                 await _locatiiService.UpdateLocatieAsync(existingLocatie);
 
                 return RedirectToAction(nameof(Index));

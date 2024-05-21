@@ -21,10 +21,8 @@ builder.Configuration.AddJsonFile("appsettings.json");
 builder.Services.AddDbContext<BakeryDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("BakeryDatabase")));
 
-// Add services to the container.
 builder.Services.AddControllersWithViews();
 
-// Register Identity services
 builder.Services.AddIdentity<User, IdentityRole<Guid>>(options =>
 {
     options.Password.RequireDigit = true;
@@ -41,7 +39,6 @@ builder.Services.AddIdentity<User, IdentityRole<Guid>>(options =>
 .AddEntityFrameworkStores<BakeryDbContext>()
 .AddDefaultTokenProviders();
 
-// Add custom services and repositories
 builder.Services.AddScoped<DbContext, BakeryDbContext>();
 
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
@@ -54,7 +51,6 @@ builder.Services.AddScoped<IAngajatiRepository, AngajatiRepository>();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 
-// Configure authentication and authorization
 builder.Services.ConfigureApplicationCookie(options =>
 {
     options.LoginPath = "/User/Login";
@@ -69,7 +65,6 @@ builder.Services.AddAuthorization(options =>
 
 var app = builder.Build();
 
-// Seed roles
 using (var scope = app.Services.CreateScope())
 {
     var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole<Guid>>>();
@@ -145,7 +140,6 @@ async Task SeedDefaultAdminAsync(UserManager<User> userManager)
         }
 }
 
-// Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
@@ -158,7 +152,7 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
-app.UseAuthentication(); // Add this line
+app.UseAuthentication(); 
 app.UseAuthorization();
 
 app.MapControllerRoute(

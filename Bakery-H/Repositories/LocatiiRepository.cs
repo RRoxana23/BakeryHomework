@@ -24,7 +24,7 @@ namespace Bakery_H.Repositories
             return await _dbContext.Set<Locatii>().FindAsync(id);
         }
 
-        public void Delete(int id) // Adăugare aici
+        public void Delete(int id)
         {
             var entity = _dbContext.Set<Locatii>().Find(id);
             if (entity != null)

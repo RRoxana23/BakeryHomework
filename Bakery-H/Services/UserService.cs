@@ -21,7 +21,6 @@ public class UserService : IUserService
         var result = await _userManager.CreateAsync(user, password);
         if (result.Succeeded)
         {
-            // Assign the "Client" role by default
             await _userManager.AddToRoleAsync(user, "Client");
         }
         return result;

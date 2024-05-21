@@ -35,9 +35,9 @@ namespace Bakery_H.Services
             await _unitOfWork.Locatii.UpdateAsync(locatie);
         }
 
-        public void DeleteLocatie(int id) // Modificare aici
+        public void DeleteLocatie(int id) 
         {
-            _unitOfWork.Locatii.Delete(id); // Sincron
+            _unitOfWork.Locatii.Delete(id); 
         }
     }
 }
