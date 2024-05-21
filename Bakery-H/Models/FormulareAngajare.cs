@@ -13,7 +13,6 @@ namespace Bakery_Homework.Models
         public DateTime DataNasterii { get; set; }
         public string? NumarTelefon { get; set; }
         public string? Email { get; set; }
-        public string? CV { get; set; }
 
         [ForeignKey("Locatie")]
         public int LocatieId { get; set; }

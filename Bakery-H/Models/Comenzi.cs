@@ -17,9 +17,5 @@ namespace Bakery_Homework.Models
         [ForeignKey("MetodaPlata")]
         public int MetodaPlataId { get; set; }
         public MetodePlata? MetodaPlata { get; set; }
-
-        [ForeignKey("Angajat")]
-        public int AngajatId { get; set; }
-        public Angajati? Angajat { get; set; }
     }
 }

@@ -13,6 +13,14 @@
       "PackagePath": "staticwebassets\\css\\Register.css"
     },
     {
+      "Id": "C:\\Users\\Rox\\BakeryHomework\\Bakery-H\\wwwroot\\css\\employees-page.css",
+      "PackagePath": "staticwebassets\\css\\employees-page.css"
+    },
+    {
+      "Id": "C:\\Users\\Rox\\BakeryHomework\\Bakery-H\\wwwroot\\css\\locations-page.css",
+      "PackagePath": "staticwebassets\\css\\locations-page.css"
+    },
+    {
       "Id": "C:\\Users\\Rox\\BakeryHomework\\Bakery-H\\wwwroot\\css\\page-content.css",
       "PackagePath": "staticwebassets\\css\\page-content.css"
     },

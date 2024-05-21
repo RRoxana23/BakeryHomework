@@ -9,5 +9,6 @@ namespace Bakery_Homework.Models
         public string? Nume { get; set; }
         public string? Adresa { get; set; }
         public string? NumarTelefon { get; set; }
+        public string? Image { get; set; }
     }
 }

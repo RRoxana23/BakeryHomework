@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Bakery_H.Migrations
 {
     [DbContext(typeof(BakeryDbContext))]
-    [Migration("20240514220954_InitialCreate")]
+    [Migration("20240521191943_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -124,6 +124,9 @@ namespace Bakery_H.Migrations
                     b.Property<string>("Functie")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Image")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("LocatieId")
                         .HasColumnType("int");
 
@@ -131,6 +134,8 @@ namespace Bakery_H.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("IdAngajat");
+
+                    b.HasIndex("ComandaId");
 
                     b.HasIndex("FormulareAngajareId");
 
@@ -173,9 +178,6 @@ namespace Bakery_H.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdComanda"));
 
-                    b.Property<int>("AngajatId")
-                        .HasColumnType("int");
-
                     b.Property<int>("ClientId")
                         .HasColumnType("int");
 
@@ -189,9 +191,6 @@ namespace Bakery_H.Migrations
                         .HasColumnType("decimal(18,2)");
 
                     b.HasKey("IdComanda");
-
-                    b.HasIndex("AngajatId")
-                        .IsUnique();
 
                     b.HasIndex("ClientId");
 
@@ -207,9 +206,6 @@ namespace Bakery_H.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdFormular"));
-
-                    b.Property<string>("CV")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("DataNasterii")
                         .HasColumnType("datetime2");
@@ -245,6 +241,9 @@ namespace Bakery_H.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdLocatie"));
 
                     b.Property<string>("Adresa")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Image")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("NumarTelefon")
@@ -291,6 +290,9 @@ namespace Bakery_H.Migrations
                     b.Property<string>("Descriere")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Image")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Ingrediente")
                         .HasColumnType("nvarchar(max)");
 
@@ -335,13 +337,13 @@ namespace Bakery_H.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("128d88bf-2cf8-4173-890f-05e8e2d438f8"),
+                            Id = new Guid("acde50a6-9e78-4902-80c0-b5cd88a6b7e7"),
                             Name = "Client",
                             NormalizedName = "CLIENT"
                         },
                         new
                         {
-                            Id = new Guid("e5951cb6-af9e-4748-bb3b-b9b77345df0d"),
+                            Id = new Guid("09612430-fb93-4cfe-955b-7522fe7b1a7c"),
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         });
@@ -452,6 +454,10 @@ namespace Bakery_H.Migrations
 
             modelBuilder.Entity("Bakery_Homework.Models.Angajati", b =>
                 {
+                    b.HasOne("Bakery_Homework.Models.Comenzi", "Comanda")
+                        .WithMany()
+                        .HasForeignKey("ComandaId");
+
                     b.HasOne("Bakery_Homework.Models.FormulareAngajare", "FormularAngajare")
                         .WithMany()
                         .HasForeignKey("FormulareAngajareId");
@@ -467,6 +473,8 @@ namespace Bakery_H.Migrations
                         .HasForeignKey("userId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Comanda");
 
                     b.Navigation("FormularAngajare");
 
@@ -488,12 +496,6 @@ namespace Bakery_H.Migrations
 
             modelBuilder.Entity("Bakery_Homework.Models.Comenzi", b =>
                 {
-                    b.HasOne("Bakery_Homework.Models.Angajati", "Angajat")
-                        .WithOne("Comanda")
-                        .HasForeignKey("Bakery_Homework.Models.Comenzi", "AngajatId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("Bakery_Homework.Models.Clienti", "Client")
                         .WithMany()
                         .HasForeignKey("ClientId")
@@ -505,8 +507,6 @@ namespace Bakery_H.Migrations
                         .HasForeignKey("MetodaPlataId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Angajat");
 
                     b.Navigation("Client");
 
@@ -573,11 +573,6 @@ namespace Bakery_H.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("Bakery_Homework.Models.Angajati", b =>
-                {
-                    b.Navigation("Comanda");
                 });
 #pragma warning restore 612, 618
         }

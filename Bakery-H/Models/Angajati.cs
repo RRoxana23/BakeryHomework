@@ -27,5 +27,6 @@ namespace Bakery_Homework.Models
         [ForeignKey("User")]
         public Guid userId { get; set; }
         public virtual User User { get; set; }
+        public string? Image { get; set; }
     }
 }

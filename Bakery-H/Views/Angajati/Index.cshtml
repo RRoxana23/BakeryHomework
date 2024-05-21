@@ -4,62 +4,105 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<head>
+    <link rel="stylesheet" href="@Url.Content("~/css/employees-page.css")">
+</head>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Functie)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DataAngajarii)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Locatie)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.FormularAngajare)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ComandaId)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.User)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Functie)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DataAngajarii)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Locatie.IdLocatie)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.FormularAngajare.IdFormular)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ComandaId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.User.Id)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.IdAngajat">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.IdAngajat">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.IdAngajat">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+<div class="container mt-5">
+    <h1 class="text-center mb-4">Employees</h1>
+    <table id="employee-table" class="table table-hover table-striped">
+        <thead class="thead-dark">
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Function</th>
+                <th>City</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var employee in Model)
+            {
+                <tr>
+                    <td>@employee.IdAngajat</td>
+                    <td>
+                        @if (employee.User != null && !string.IsNullOrWhiteSpace(employee.User.Nume))
+                        {
+                            <a href="#" onclick="openEmployeePopup('@employee.Image', '@employee.User.Nume', '@employee.Functie', '@employee.User.NumarTelefon', '@employee.DataAngajarii', '@employee.Locatie.Nume')">
+                                @employee.User.Nume
+                            </a>
+                        }
+                        else
+                        {
+                            <span>No name</span>
+                        }
+                    </td>
+                    <td>@employee.Functie</td>
+                    <td>
+                        @if (employee.Locatie != null && !string.IsNullOrWhiteSpace(employee.Locatie.Nume))
+                        {
+                            @employee.Locatie.Nume
+                        }
+                        else
+                        {
+                            <span>No location</span>
+                        }
+                    </td>
+                </tr>
+
+                <!-- Debugging output -->
+                <tr>
+                    <td colspan="4">
+                        Debugging: @employee.IdAngajat | @employee.User?.Nume | @employee.Functie | @employee.Locatie?.Nume
+                    </td>
+                </tr>
+            }
+
+
+        </tbody>
+    </table>
+</div>
+
+<div class="modal fade" id="employeePopup" role="dialog" aria-labelledby="employeePopupLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-md" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="employeePopupLabel"></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        <img id="employeeImage" class="img-fluid" alt="Employee Image">
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-md-12">
+                        <p><strong>Name:</strong> <span id="employeeName"></span></p>
+                        <p><strong>Function:</strong> <span id="employeeFunction"></span></p>
+                        <p><strong>Phone Number:</strong> <span id="employeePhoneNumber"></span></p>
+                        <p><strong>Hire Date:</strong> <span id="employeeHireDate"></span></p>
+                        <p><strong>Salary:</strong> <span id="employeeSalary"></span></p>
+                        <p><strong>City:</strong> <span id="employeeCity"></span></p>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function openEmployeePopup(image, name, Function, phoneNumber, hireDate, salary, city) {
+        $('#employeePopupLabel').text(name);
+        $('#employeeImage').attr('src', image);
+        $('#employeeName').text(name);
+        $('#employeeFunction').text(Function);
+        $('#employeePhoneNumber').text(phoneNumber);
+        $('#employeeHireDate').text(hireDate);
+        $('#employeeCity').text(city);
+
+        $('#employeePopup').modal('show');
+    }
+</script>

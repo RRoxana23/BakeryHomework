@@ -23,5 +23,15 @@ namespace Bakery_H.Repositories
         {
             return await _dbContext.Set<Locatii>().FindAsync(id);
         }
+
+        public void Delete(int id) // Adăugare aici
+        {
+            var entity = _dbContext.Set<Locatii>().Find(id);
+            if (entity != null)
+            {
+                _dbContext.Set<Locatii>().Remove(entity);
+                _dbContext.SaveChanges();
+            }
+        }
     }
 }

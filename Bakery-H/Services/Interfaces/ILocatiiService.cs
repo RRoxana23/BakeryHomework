@@ -10,6 +10,6 @@ namespace Bakery_H.Services.Interfaces
         Task<Locatii> GetLocatieByIdAsync(int id);
         Task CreateLocatieAsync(Locatii locatie);
         Task UpdateLocatieAsync(Locatii locatie);
-        Task DeleteLocatieAsync(int id);
+        void DeleteLocatie(int id);
     }
 }

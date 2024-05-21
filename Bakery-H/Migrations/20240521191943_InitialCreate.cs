@@ -64,7 +64,8 @@ namespace Bakery_H.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Nume = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Adresa = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    NumarTelefon = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    NumarTelefon = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Image = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -95,7 +96,8 @@ namespace Bakery_H.Migrations
                     Descriere = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Ingrediente = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Pret = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    Cantitate = table.Column<int>(type: "int", nullable: false)
+                    Cantitate = table.Column<int>(type: "int", nullable: false),
+                    Image = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -240,7 +242,6 @@ namespace Bakery_H.Migrations
                     DataNasterii = table.Column<DateTime>(type: "datetime2", nullable: false),
                     NumarTelefon = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    CV = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     LocatieId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -255,41 +256,6 @@ namespace Bakery_H.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Angajati",
-                columns: table => new
-                {
-                    IdAngajat = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Functie = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    DataAngajarii = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    LocatieId = table.Column<int>(type: "int", nullable: false),
-                    FormulareAngajareId = table.Column<int>(type: "int", nullable: true),
-                    ComandaId = table.Column<int>(type: "int", nullable: true),
-                    userId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Angajati", x => x.IdAngajat);
-                    table.ForeignKey(
-                        name: "FK_Angajati_AspNetUsers_userId",
-                        column: x => x.userId,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Angajati_FormulareAngajare_FormulareAngajareId",
-                        column: x => x.FormulareAngajareId,
-                        principalTable: "FormulareAngajare",
-                        principalColumn: "IdFormular");
-                    table.ForeignKey(
-                        name: "FK_Angajati_Locatii_LocatieId",
-                        column: x => x.LocatieId,
-                        principalTable: "Locatii",
-                        principalColumn: "IdLocatie",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Comenzi",
                 columns: table => new
                 {
@@ -298,18 +264,11 @@ namespace Bakery_H.Migrations
                     DataComanda = table.Column<DateTime>(type: "datetime2", nullable: true),
                     TotalPlata = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     ClientId = table.Column<int>(type: "int", nullable: false),
-                    MetodaPlataId = table.Column<int>(type: "int", nullable: false),
-                    AngajatId = table.Column<int>(type: "int", nullable: false)
+                    MetodaPlataId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Comenzi", x => x.IdComanda);
-                    table.ForeignKey(
-                        name: "FK_Comenzi_Angajati_AngajatId",
-                        column: x => x.AngajatId,
-                        principalTable: "Angajati",
-                        principalColumn: "IdAngajat",
-                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Comenzi_Clienti_ClientId",
                         column: x => x.ClientId,
@@ -324,14 +283,60 @@ namespace Bakery_H.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "Angajati",
+                columns: table => new
+                {
+                    IdAngajat = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Functie = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    DataAngajarii = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    LocatieId = table.Column<int>(type: "int", nullable: false),
+                    FormulareAngajareId = table.Column<int>(type: "int", nullable: true),
+                    ComandaId = table.Column<int>(type: "int", nullable: true),
+                    userId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Image = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Angajati", x => x.IdAngajat);
+                    table.ForeignKey(
+                        name: "FK_Angajati_AspNetUsers_userId",
+                        column: x => x.userId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Angajati_Comenzi_ComandaId",
+                        column: x => x.ComandaId,
+                        principalTable: "Comenzi",
+                        principalColumn: "IdComanda");
+                    table.ForeignKey(
+                        name: "FK_Angajati_FormulareAngajare_FormulareAngajareId",
+                        column: x => x.FormulareAngajareId,
+                        principalTable: "FormulareAngajare",
+                        principalColumn: "IdFormular");
+                    table.ForeignKey(
+                        name: "FK_Angajati_Locatii_LocatieId",
+                        column: x => x.LocatieId,
+                        principalTable: "Locatii",
+                        principalColumn: "IdLocatie",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { new Guid("128d88bf-2cf8-4173-890f-05e8e2d438f8"), null, "Client", "CLIENT" },
-                    { new Guid("e5951cb6-af9e-4748-bb3b-b9b77345df0d"), null, "Administrator", "ADMINISTRATOR" }
+                    { new Guid("09612430-fb93-4cfe-955b-7522fe7b1a7c"), null, "Administrator", "ADMINISTRATOR" },
+                    { new Guid("acde50a6-9e78-4902-80c0-b5cd88a6b7e7"), null, "Client", "CLIENT" }
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Angajati_ComandaId",
+                table: "Angajati",
+                column: "ComandaId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Angajati_FormulareAngajareId",
@@ -393,12 +398,6 @@ namespace Bakery_H.Migrations
                 column: "userId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Comenzi_AngajatId",
-                table: "Comenzi",
-                column: "AngajatId",
-                unique: true);
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Comenzi_ClientId",
                 table: "Comenzi",
                 column: "ClientId");
@@ -418,6 +417,9 @@ namespace Bakery_H.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
+                name: "Angajati");
+
+            migrationBuilder.DropTable(
                 name: "AspNetRoleClaims");
 
             migrationBuilder.DropTable(
@@ -433,16 +435,16 @@ namespace Bakery_H.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "Comenzi");
-
-            migrationBuilder.DropTable(
                 name: "Produse");
 
             migrationBuilder.DropTable(
-                name: "AspNetRoles");
+                name: "Comenzi");
 
             migrationBuilder.DropTable(
-                name: "Angajati");
+                name: "FormulareAngajare");
+
+            migrationBuilder.DropTable(
+                name: "AspNetRoles");
 
             migrationBuilder.DropTable(
                 name: "Clienti");
@@ -451,13 +453,10 @@ namespace Bakery_H.Migrations
                 name: "MetodePlata");
 
             migrationBuilder.DropTable(
-                name: "FormulareAngajare");
+                name: "Locatii");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
-
-            migrationBuilder.DropTable(
-                name: "Locatii");
         }
     }
 }

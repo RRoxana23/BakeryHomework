@@ -11,5 +11,6 @@ namespace Bakery_Homework.Models
         public string? Ingrediente { get; set; }
         public decimal Pret { get; set; }
         public int Cantitate { get; set; }
+        public string? Image { get; set; }
     }
 }
