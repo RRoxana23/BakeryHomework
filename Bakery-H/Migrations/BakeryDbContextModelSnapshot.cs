@@ -210,7 +210,7 @@ namespace Bakery_H.Migrations
                     b.Property<string>("Email")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("LocatieId")
+                    b.Property<int?>("LocatieId")
                         .HasColumnType("int");
 
                     b.Property<string>("NumarTelefon")
@@ -334,13 +334,13 @@ namespace Bakery_H.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("acde50a6-9e78-4902-80c0-b5cd88a6b7e7"),
+                            Id = new Guid("6718c45b-e37b-4d88-a1d4-0fadb0a0a319"),
                             Name = "Client",
                             NormalizedName = "CLIENT"
                         },
                         new
                         {
-                            Id = new Guid("09612430-fb93-4cfe-955b-7522fe7b1a7c"),
+                            Id = new Guid("f8556adc-8794-4c5c-b1a7-bbd59ff973b7"),
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         });
@@ -515,8 +515,7 @@ namespace Bakery_H.Migrations
                     b.HasOne("Bakery_Homework.Models.Locatii", "Locatie")
                         .WithMany()
                         .HasForeignKey("LocatieId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.SetNull);
 
                     b.Navigation("Locatie");
                 });

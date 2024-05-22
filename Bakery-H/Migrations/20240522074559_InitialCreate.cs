@@ -242,7 +242,7 @@ namespace Bakery_H.Migrations
                     DataNasterii = table.Column<DateTime>(type: "datetime2", nullable: false),
                     NumarTelefon = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    LocatieId = table.Column<int>(type: "int", nullable: false)
+                    LocatieId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -252,7 +252,7 @@ namespace Bakery_H.Migrations
                         column: x => x.LocatieId,
                         principalTable: "Locatii",
                         principalColumn: "IdLocatie",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.SetNull);
                 });
 
             migrationBuilder.CreateTable(
@@ -329,8 +329,8 @@ namespace Bakery_H.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { new Guid("09612430-fb93-4cfe-955b-7522fe7b1a7c"), null, "Administrator", "ADMINISTRATOR" },
-                    { new Guid("acde50a6-9e78-4902-80c0-b5cd88a6b7e7"), null, "Client", "CLIENT" }
+                    { new Guid("6718c45b-e37b-4d88-a1d4-0fadb0a0a319"), null, "Client", "CLIENT" },
+                    { new Guid("f8556adc-8794-4c5c-b1a7-bbd59ff973b7"), null, "Administrator", "ADMINISTRATOR" }
                 });
 
             migrationBuilder.CreateIndex(

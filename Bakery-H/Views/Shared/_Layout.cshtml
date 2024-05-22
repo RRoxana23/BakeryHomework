@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/Bakery_H.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="@Url.Content("~/css/site.css")">
+    <link rel="stylesheet" href="@Url.Content("~/css/menu-bar.css")">
 </head>
 <body>
     @{
@@ -17,61 +19,74 @@
         var profilePictureClaim = User.Claims.FirstOrDefault(c => c.Type == "ProfileImage")?.Value;
     }
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Bakery</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Locatii" asp-action="Index">Locatii</a>
-                        </li>
-                        @if (User.IsInRole("Administrator"))
-                        {
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Angajati" asp-action="Index">Angajati</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="FormulareAngajare" asp-action="Index">Formulare de angajare</a>
-                            </li>
-                        }
-                    </ul>
-                    <ul class="navbar-nav">
-                        @if (User.Identity.IsAuthenticated)
-                        {
-                            <li class="nav-item">
-                                <form id="logoutForm" asp-controller="User" asp-action="Logout" method="post">
-                                    <button type="submit" class="btn btn-link nav-link">Logout</button>
-                                </form>
-                            </li>
-                        }
-                        else
-                        {
-                            <li class="nav-item">
-                                <a class="nav-link" asp-area="" asp-controller="User" asp-action="Login">Login</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" asp-area="" asp-controller="User" asp-action="Register">Register</a>
-                            </li>
-                        }
-                        @if (User.Identity.IsAuthenticated)
-                        {
-                            <li class="nav-item d-flex align-items-center">
-                                <img src="@Url.Action("ProfilePicture", "User", new { userId = User.FindFirstValue(ClaimTypes.NameIdentifier) })" alt="Profile Picture" class="rounded-circle" style="width: 32px; height: 32px; margin-left: 10px;">
-                            </li>
-                        }
-                    </ul>
+        <nav class="navbar navbar-expand-lg">
+            <div class="left-section">
+                <div class="logo-container">
+                    <a href="@Url.Action("Index", "Home")" class="nav-link">
+                        <img src="~/icons/logo.png" alt="Logo">
+                    </a>
                 </div>
             </div>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="collapsibleNavbar">
+                <ul class="navbar-nav middle-section">
+                    <li class="nav-item">
+                        <a href="@Url.Action("Index", "Home")" class="nav-link">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="@Url.Action("Index", "Produse")" class="nav-link">Produse</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="@Url.Action("Index", "Locatii")" class="nav-link">Locatii</a>
+                    </li>
+                    @if (User.IsInRole("Administrator"))
+                    {
+                        <li class="nav-item">
+                            <a href="@Url.Action("Index", "Angajati")" class="nav-link">Angajati</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="@Url.Action("Index", "FormulareAngajare")" class="nav-link">Formulare de angajare</a>
+                        </li>
+                    }
+                    @if (User.IsInRole("Client"))
+                    {
+                        <li class="nav-item">
+                            <a href="@Url.Action("Create", "FormulareAngajare")" class="nav-link">Formulare de angajare</a>
+                        </li>
+                    }
+                </ul>
+
+                <ul class="navbar-nav right-section">
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <li class="nav-item">
+                            <form id="logoutForm" asp-controller="User" asp-action="Logout" method="post">
+                                <button type="submit" class="btn btn-link nav-link">Logout</button>
+                            </form>
+                        </li>
+                    }
+                    else
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="User" asp-action="Login">Login</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="User" asp-action="Register">Register</a>
+                        </li>
+                    }
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <li class="nav-item d-flex align-items-center">
+                            <img src="@Url.Action("ProfilePicture", "User", new { userId = User.FindFirstValue(ClaimTypes.NameIdentifier) })" alt="Profile Picture" class="rounded-circle" style="width: 32px; height: 32px; margin-left: 10px;">
+                        </li>
+                    }
+                </ul>
+            </div>
+            <span class="navbar-text">Roxana Albastroiu</span>
         </nav>
 
     </header>

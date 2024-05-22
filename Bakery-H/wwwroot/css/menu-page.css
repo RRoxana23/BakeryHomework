@@ -1,0 +1,104 @@
+﻿.menu {
+    margin: 1vw 5% 5% 5%;
+    padding: 2.5rem 0 0 2.5rem;
+    background-color: #f3e7df;
+}
+
+.products-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.card {
+    max-width: 280px;
+    margin: 0 2.5rem 2.5rem 0;
+    padding: 20px;
+    align-items: center;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.content{
+    margin-bottom: 1em;
+}
+
+.card-title {
+    font-size: 1.25em;
+}
+
+.card img {
+    height: 150px;
+    width: 230px;
+    align-self: center;
+    object-fit: cover;
+}
+
+.button-margin {
+    margin: 0;
+}
+
+.modal-title{
+    font-size: 1.5em;
+}
+
+.description {
+    font-size: 1.2em;
+}
+
+.ingredients {
+    font-style: italic;
+}
+
+.add-to-cart-button,
+.add-to-cart-button:hover {
+    border: 2px solid #cf743f;
+}
+
+.add-to-cart-button{
+    color: white;
+    background-color: #cf743f;
+}
+
+.add-to-cart-button:hover {
+    color: #cf743f;
+    border: 2px solid #cf743f;
+    background-color: white;
+}
+
+@media ((min-width: 701px) and (max-width: 772px)) or ((min-width: 890px) and (max-width: 1100px)) {
+
+    .menu {
+        padding-left: 1rem;
+    }
+
+    .card {
+        width: 240px;
+        margin-right: 1rem;
+        margin-bottom: 2.5rem;
+    }
+
+    .card-title {
+        font-size: 1.25em;
+    }
+
+    .card img {
+        height: 120px;
+        width: 200px;
+    }
+
+    .content {
+        font-size: 0.9em;
+    }
+
+    .see-more-button {
+        height: 28px;
+    }
+}
+
+
+@media (max-width: 700px) {
+
+    .products-list {
+        justify-content: center;
+    }
+}

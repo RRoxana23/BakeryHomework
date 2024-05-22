@@ -1,0 +1,39 @@
+﻿.container {
+  max-width: 1200px;
+}
+
+.card-header h3 {
+  color: black;
+}
+
+.card-body {
+  color: black;
+  padding: 8%;
+}
+
+.form-group{
+  margin-bottom: 1em;
+}
+
+.form-group label {
+  font-weight: bold;
+}
+
+.upload-file{
+    display: flex;
+    flex-direction: column;
+}
+
+.text-danger {
+  color: #c02b0a;
+}
+
+.btn-primary {
+  background-color: #c02b0a;
+  border-color: #c02b0a;
+}
+
+.btn-primary:hover {
+  background-color: #af2809;
+  border-color: #af2809;
+}

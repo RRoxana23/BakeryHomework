@@ -27,7 +27,7 @@
                     <td>
                         @if (employee.User != null && !string.IsNullOrWhiteSpace(employee.User.Nume))
                         {
-                            <a href="#" onclick="openEmployeePopup('@employee.Image', '@employee.User.Nume', '@employee.Functie', '@employee.User.NumarTelefon', '@employee.DataAngajarii', '@employee.Locatie.Nume')">
+                            <a href="#" onclick="openEmployeePopup('@Url.Content("~/icons/employees/")@employee.Image', '@employee.User.Nume', '@employee.Functie', '@employee.DataAngajarii', '@employee.Locatie.Nume')">
                                 @employee.User.Nume
                             </a>
                         }
@@ -48,16 +48,7 @@
                         }
                     </td>
                 </tr>
-
-                <!-- Debugging output -->
-                <tr>
-                    <td colspan="4">
-                        Debugging: @employee.IdAngajat | @employee.User?.Nume | @employee.Functie | @employee.Locatie?.Nume
-                    </td>
-                </tr>
             }
-
-
         </tbody>
     </table>
 </div>
@@ -79,9 +70,7 @@
                     <div class="col-md-12">
                         <p><strong>Name:</strong> <span id="employeeName"></span></p>
                         <p><strong>Function:</strong> <span id="employeeFunction"></span></p>
-                        <p><strong>Phone Number:</strong> <span id="employeePhoneNumber"></span></p>
                         <p><strong>Hire Date:</strong> <span id="employeeHireDate"></span></p>
-                        <p><strong>Salary:</strong> <span id="employeeSalary"></span></p>
                         <p><strong>City:</strong> <span id="employeeCity"></span></p>
                     </div>
                 </div>
@@ -94,12 +83,11 @@
 </div>
 
 <script>
-    function openEmployeePopup(image, name, Function, phoneNumber, hireDate, salary, city) {
+    function openEmployeePopup(image, name, Function, hireDate, city) {
         $('#employeePopupLabel').text(name);
         $('#employeeImage').attr('src', image);
         $('#employeeName').text(name);
         $('#employeeFunction').text(Function);
-        $('#employeePhoneNumber').text(phoneNumber);
         $('#employeeHireDate').text(hireDate);
         $('#employeeCity').text(city);
 

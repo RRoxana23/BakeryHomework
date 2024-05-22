@@ -27,12 +27,18 @@ namespace Bakery_Homework.Repositories
         }
         public async Task<IEnumerable<Angajati>> GetAllAsync()
         {
-            return await _dbContext.Set<Angajati>().ToListAsync();
+            return await _dbContext.Set<Angajati>()
+                .Include(a => a.User)
+                .Include(a => a.Locatie)
+                .ToListAsync();
         }
 
         public async Task<Angajati> GetByIdAsync(int id)
         {
-            return await _dbContext.Set<Angajati>().FindAsync(id);
+            return await _dbContext.Set<Angajati>()
+                .Include(a => a.User)
+                .Include(a => a.Locatie)
+                .FirstOrDefaultAsync(a => a.IdAngajat == id);
         }
 
         public async Task CreateAsync(Angajati angajati)

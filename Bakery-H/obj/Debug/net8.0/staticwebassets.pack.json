@@ -17,8 +17,20 @@
       "PackagePath": "staticwebassets\\css\\employees-page.css"
     },
     {
+      "Id": "C:\\Users\\Rox\\BakeryHomework\\Bakery-H\\wwwroot\\css\\join-team-page.css",
+      "PackagePath": "staticwebassets\\css\\join-team-page.css"
+    },
+    {
       "Id": "C:\\Users\\Rox\\BakeryHomework\\Bakery-H\\wwwroot\\css\\locations-page.css",
       "PackagePath": "staticwebassets\\css\\locations-page.css"
+    },
+    {
+      "Id": "C:\\Users\\Rox\\BakeryHomework\\Bakery-H\\wwwroot\\css\\menu-bar.css",
+      "PackagePath": "staticwebassets\\css\\menu-bar.css"
+    },
+    {
+      "Id": "C:\\Users\\Rox\\BakeryHomework\\Bakery-H\\wwwroot\\css\\menu-page.css",
+      "PackagePath": "staticwebassets\\css\\menu-page.css"
     },
     {
       "Id": "C:\\Users\\Rox\\BakeryHomework\\Bakery-H\\wwwroot\\css\\page-content.css",
@@ -79,6 +91,10 @@
     {
       "Id": "C:\\Users\\Rox\\BakeryHomework\\Bakery-H\\wwwroot\\icons\\employees\\employee9.jpg",
       "PackagePath": "staticwebassets\\icons\\employees\\employee9.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Rox\\BakeryHomework\\Bakery-H\\wwwroot\\icons\\join-page-img.jpg",
+      "PackagePath": "staticwebassets\\icons\\join-page-img.jpg"
     },
     {
       "Id": "C:\\Users\\Rox\\BakeryHomework\\Bakery-H\\wwwroot\\icons\\locations\\bakery-bucuresti.jpg",

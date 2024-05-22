@@ -31,7 +31,7 @@ namespace Bakery_Homework.Models
                .HasOne(f => f.Locatie)
                .WithMany()
                .HasForeignKey(f => f.LocatieId)
-               .OnDelete(DeleteBehavior.Restrict);
+               .OnDelete(DeleteBehavior.SetNull);
 
             modelBuilder.Entity<Comenzi>()
                 .HasOne(f => f.Client)

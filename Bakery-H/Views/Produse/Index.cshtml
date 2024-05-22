@@ -4,62 +4,77 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<head>
+    <link rel="stylesheet" href="@Url.Content("~/css/page-content.css")">
+    <link rel="stylesheet" href="@Url.Content("~/css/menu-page.css")">
+</head>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Nume)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Descriere)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Ingrediente)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Pret)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Cantitate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Image)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Nume)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Descriere)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Ingrediente)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Pret)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Cantitate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Image)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.IdProdus">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.IdProdus">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.IdProdus">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+<h1 class="text-center mb-4">Index</h1>
+
+<div class="menu">
+    <div class="products-list">
+        @foreach (var product in Model)
+        {
+            <div class="card" style="width:400px">
+                <div>
+                    <h4 class="card-title content">@product.Nume</h4>
+                    <img class="card-img-top content" src="@Url.Content("~/icons/pastry/")@product.Image" alt="Card image">
+                    <p class="card-text content">€@product.Pret</p>
+                    <a href="#" class="btn order-now-button button-margin" onclick="openPopup('@product.Nume', '@Url.Content("~/icons/pastry/")@product.Image', '@product.Descriere', '@product.Ingrediente', '@product.Pret')">See more</a>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+
+<div class="modal fade" id="productPopup" tabindex="-1" role="dialog" aria-labelledby="productPopupLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-md" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="productPopupLabel"></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <img id="popupImage" class="img-fluid" src="" alt="Product">
+                    </div>
+                    <div class="col-md-6">
+                        <div class="row">
+                            <div class="col">
+                                <p id="popupDescription" class="description"></p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <p id="popupIngredients" class="ingredients"></p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <p id="popupPrice" class="price"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn add-to-cart-button">Add to cart</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function openPopup(title, image, description, ingredients, price) {
+        $('#productPopupLabel').text(title);
+        $('#popupImage').attr('src', image);
+        $('#popupDescription').text(description);
+        $('#popupIngredients').text(ingredients);
+        $('#popupPrice').text('€' + price);
+
+        $('#productPopup').modal('show');
+    }
+</script>
