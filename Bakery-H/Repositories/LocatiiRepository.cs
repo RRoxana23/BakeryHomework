@@ -29,11 +29,9 @@ namespace Bakery_H.Repositories
             var entity = _dbContext.Set<Locatii>().Find(id);
             if (entity != null)
             {
-                // First, delete related records in FormulareAngajare
                 var relatedRecords = _dbContext.Set<FormulareAngajare>().Where(f => f.LocatieId == id).ToList();
                 _dbContext.Set<FormulareAngajare>().RemoveRange(relatedRecords);
 
-                // Then, delete the location
                 _dbContext.Set<Locatii>().Remove(entity);
 
                 _dbContext.SaveChanges();

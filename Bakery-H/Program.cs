@@ -46,6 +46,10 @@ builder.Services.AddScoped<ILocatiiService, LocatiiService>();
 builder.Services.AddScoped<ILocatiiRepository, LocatiiRepository>();
 builder.Services.AddScoped<IAngajatiService, AngajatiService>();
 builder.Services.AddScoped<IAngajatiRepository, AngajatiRepository>();
+builder.Services.AddScoped<IProduseService, ProduseService>();
+builder.Services.AddScoped<IProduseRepository, ProduseRepository>();
+builder.Services.AddScoped<IFormulareAngajareService, FormulareAngajareService>();
+builder.Services.AddScoped<IFormulareAngajareRepository, FormulareAngajareRepository>();
 
 
 builder.Services.AddScoped<IUserService, UserService>();

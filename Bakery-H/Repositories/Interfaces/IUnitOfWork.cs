@@ -1,11 +1,15 @@
 ﻿using Bakery_Homework.Repositories.Interfaces;
+using System.Threading.Tasks;
 
 namespace Bakery_H.Repositories.Interfaces
 {
     public interface IUnitOfWork
     {
-        IAngajatiRepository Angajati { get; set; }
-        ILocatiiRepository Locatii { get; set; }
-        IUserRepository User { get; set; }
+        IProduseRepository Produse { get; }
+        ILocatiiRepository Locatii { get; }
+        IUserRepository User { get; }
+        IAngajatiRepository Angajati { get; }
+        IFormulareAngajareRepository FormulareAngajare { get; }
+        Task SaveChangesAsync();
     }
 }

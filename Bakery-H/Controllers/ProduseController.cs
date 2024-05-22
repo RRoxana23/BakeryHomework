@@ -1,27 +1,27 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using Bakery_Homework.Models;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
+using System.Threading.Tasks;
+using Bakery_H.Services.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
-using Bakery_Homework.Models;
 
 namespace Bakery_H.Controllers
 {
+    [Authorize(Roles = "Administrator,Client")]
     public class ProduseController : Controller
     {
-        private readonly BakeryDbContext _context;
+        private readonly IProduseService _produseService;
 
-        public ProduseController(BakeryDbContext context)
+        public ProduseController(IProduseService produseService)
         {
-            _context = context;
+            _produseService = produseService;
         }
 
         // GET: Produse
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Produse.ToListAsync());
+            var produse = await _produseService.GetAllProduseAsync();
+            return View(produse);
         }
 
         // GET: Produse/Details/5
@@ -32,8 +32,7 @@ namespace Bakery_H.Controllers
                 return NotFound();
             }
 
-            var produse = await _context.Produse
-                .FirstOrDefaultAsync(m => m.IdProdus == id);
+            var produse = await _produseService.GetProdusByIdAsync(id.Value);
             if (produse == null)
             {
                 return NotFound();
@@ -49,16 +48,13 @@ namespace Bakery_H.Controllers
         }
 
         // POST: Produse/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("IdProdus,Nume,Descriere,Ingrediente,Pret,Cantitate,Image")] Produse produse)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(produse);
-                await _context.SaveChangesAsync();
+                await _produseService.CreateProdusAsync(produse);
                 return RedirectToAction(nameof(Index));
             }
             return View(produse);
@@ -72,7 +68,7 @@ namespace Bakery_H.Controllers
                 return NotFound();
             }
 
-            var produse = await _context.Produse.FindAsync(id);
+            var produse = await _produseService.GetProdusByIdAsync(id.Value);
             if (produse == null)
             {
                 return NotFound();
@@ -81,8 +77,6 @@ namespace Bakery_H.Controllers
         }
 
         // POST: Produse/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("IdProdus,Nume,Descriere,Ingrediente,Pret,Cantitate,Image")] Produse produse)
@@ -96,12 +90,11 @@ namespace Bakery_H.Controllers
             {
                 try
                 {
-                    _context.Update(produse);
-                    await _context.SaveChangesAsync();
+                    await _produseService.UpdateProdusAsync(produse);
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!ProduseExists(produse.IdProdus))
+                    if (!await ProduseExists(produse.IdProdus))
                     {
                         return NotFound();
                     }
@@ -123,8 +116,7 @@ namespace Bakery_H.Controllers
                 return NotFound();
             }
 
-            var produse = await _context.Produse
-                .FirstOrDefaultAsync(m => m.IdProdus == id);
+            var produse = await _produseService.GetProdusByIdAsync(id.Value);
             if (produse == null)
             {
                 return NotFound();
@@ -136,21 +128,16 @@ namespace Bakery_H.Controllers
         // POST: Produse/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        public IActionResult DeleteConfirmed(int id)
         {
-            var produse = await _context.Produse.FindAsync(id);
-            if (produse != null)
-            {
-                _context.Produse.Remove(produse);
-            }
-
-            await _context.SaveChangesAsync();
+            _produseService.DeleteProdus(id);
             return RedirectToAction(nameof(Index));
         }
 
-        private bool ProduseExists(int id)
+        private async Task<bool> ProduseExists(int id)
         {
-            return _context.Produse.Any(e => e.IdProdus == id);
+            var produse = await _produseService.GetProdusByIdAsync(id);
+            return produse != null;
         }
     }
 }

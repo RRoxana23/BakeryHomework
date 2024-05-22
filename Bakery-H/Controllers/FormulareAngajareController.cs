@@ -6,23 +6,26 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Bakery_Homework.Models;
+using Bakery_H.Services.Interfaces;
 
 namespace Bakery_H.Controllers
 {
     public class FormulareAngajareController : Controller
     {
-        private readonly BakeryDbContext _context;
+        private readonly IFormulareAngajareService _formulareAngajareService;
+        private readonly ILocatiiService _locatiiService;
 
-        public FormulareAngajareController(BakeryDbContext context)
+        public FormulareAngajareController(IFormulareAngajareService formulareAngajareService, ILocatiiService locatiiService)
         {
-            _context = context;
+            _formulareAngajareService = formulareAngajareService;
+            _locatiiService = locatiiService;
         }
 
         // GET: FormulareAngajare
         public async Task<IActionResult> Index()
         {
-            var bakeryDbContext = _context.FormulareAngajare.Include(f => f.Locatie);
-            return View(await bakeryDbContext.ToListAsync());
+            var formulareAngajare = await _formulareAngajareService.GetAllFormulareAsync();
+            return View(formulareAngajare);
         }
 
         // GET: FormulareAngajare/Details/5
@@ -33,9 +36,7 @@ namespace Bakery_H.Controllers
                 return NotFound();
             }
 
-            var formulareAngajare = await _context.FormulareAngajare
-                .Include(f => f.Locatie)
-                .FirstOrDefaultAsync(m => m.IdFormular == id);
+            var formulareAngajare = await _formulareAngajareService.GetFormularByIdAsync(id.Value);
             if (formulareAngajare == null)
             {
                 return NotFound();
@@ -45,23 +46,18 @@ namespace Bakery_H.Controllers
         }
 
         // GET: FormulareAngajare/Create
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
-            var locatii = _context.Locatii
-            .Select(l => new SelectListItem
+            var locatii = await _locatiiService.GetAllLocatiiAsync();
+            ViewData["LocatieId"] = locatii.Select(l => new SelectListItem
             {
                 Value = l.IdLocatie.ToString(),
                 Text = l.Nume
-            })
-            .ToList();
-
-            ViewData["LocatieId"] = locatii;
+            }).ToList();
             return View();
         }
 
         // POST: FormulareAngajare/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("IdFormular,Nume,Prenume,DataNasterii,NumarTelefon,Email,LocatieId")] FormulareAngajare formulareAngajare)
@@ -70,11 +66,11 @@ namespace Bakery_H.Controllers
             {
                 try
                 {
-                    _context.Add(formulareAngajare);
-                    await _context.SaveChangesAsync();
+                    await _formulareAngajareService.CreateFormularAsync(formulareAngajare);
                     TempData["SuccessMessage"] = "Formularul a fost trimis cu succes!";
+                    return RedirectToAction(nameof(Index));
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
                     TempData["ErrorMessage"] = "A apărut o eroare la salvarea datelor pe server.";
                 }
@@ -85,18 +81,14 @@ namespace Bakery_H.Controllers
             }
 
             // Reîncarcă view-ul Create, menținând mesajele de succes sau eroare
-            var locatii = _context.Locatii
-                .Select(l => new SelectListItem
-                {
-                    Value = l.IdLocatie.ToString(),
-                    Text = l.Nume
-                })
-                .ToList();
-
-            ViewData["LocatieId"] = locatii;
+            var locatii = await _locatiiService.GetAllLocatiiAsync();
+            ViewData["LocatieId"] = locatii.Select(l => new SelectListItem
+            {
+                Value = l.IdLocatie.ToString(),
+                Text = l.Nume
+            }).ToList();
             return View(formulareAngajare);
         }
-
 
         // GET: FormulareAngajare/Edit/5
         public async Task<IActionResult> Edit(int? id)
@@ -106,18 +98,18 @@ namespace Bakery_H.Controllers
                 return NotFound();
             }
 
-            var formulareAngajare = await _context.FormulareAngajare.FindAsync(id);
+            var formulareAngajare = await _formulareAngajareService.GetFormularByIdAsync(id.Value);
             if (formulareAngajare == null)
             {
                 return NotFound();
             }
-            ViewData["LocatieId"] = new SelectList(_context.Locatii, "IdLocatie", "IdLocatie", formulareAngajare.LocatieId);
+
+            var locatii = await _locatiiService.GetAllLocatiiAsync();
+            ViewData["LocatieId"] = new SelectList(locatii, "IdLocatie", "Nume", formulareAngajare.LocatieId);
             return View(formulareAngajare);
         }
 
         // POST: FormulareAngajare/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("IdFormular,Nume,Prenume,DataNasterii,NumarTelefon,Email,LocatieId")] FormulareAngajare formulareAngajare)
@@ -131,12 +123,12 @@ namespace Bakery_H.Controllers
             {
                 try
                 {
-                    _context.Update(formulareAngajare);
-                    await _context.SaveChangesAsync();
+                    await _formulareAngajareService.UpdateFormularAsync(formulareAngajare);
+                    return RedirectToAction(nameof(Index));
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!FormulareAngajareExists(formulareAngajare.IdFormular))
+                    if (!await FormulareAngajareExists(formulareAngajare.IdFormular))
                     {
                         return NotFound();
                     }
@@ -145,9 +137,10 @@ namespace Bakery_H.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
             }
-            ViewData["LocatieId"] = new SelectList(_context.Locatii, "IdLocatie", "IdLocatie", formulareAngajare.LocatieId);
+
+            var locatii = await _locatiiService.GetAllLocatiiAsync();
+            ViewData["LocatieId"] = new SelectList(locatii, "IdLocatie", "Nume", formulareAngajare.LocatieId);
             return View(formulareAngajare);
         }
 
@@ -159,9 +152,7 @@ namespace Bakery_H.Controllers
                 return NotFound();
             }
 
-            var formulareAngajare = await _context.FormulareAngajare
-                .Include(f => f.Locatie)
-                .FirstOrDefaultAsync(m => m.IdFormular == id);
+            var formulareAngajare = await _formulareAngajareService.GetFormularByIdAsync(id.Value);
             if (formulareAngajare == null)
             {
                 return NotFound();
@@ -173,21 +164,16 @@ namespace Bakery_H.Controllers
         // POST: FormulareAngajare/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        public IActionResult DeleteConfirmed(int id)
         {
-            var formulareAngajare = await _context.FormulareAngajare.FindAsync(id);
-            if (formulareAngajare != null)
-            {
-                _context.FormulareAngajare.Remove(formulareAngajare);
-            }
-
-            await _context.SaveChangesAsync();
+            _formulareAngajareService.DeleteFormular(id);
             return RedirectToAction(nameof(Index));
         }
 
-        private bool FormulareAngajareExists(int id)
+        private async Task<bool> FormulareAngajareExists(int id)
         {
-            return _context.FormulareAngajare.Any(e => e.IdFormular == id);
+            var formulare = await _formulareAngajareService.GetFormularByIdAsync(id);
+            return formulare != null;
         }
     }
 }
