@@ -6,7 +6,6 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace Bakery_H.Controllers
 {
-    [Authorize(Roles = "Administrator,Client")]
     public class LocatiiController : Controller
     {
         private readonly ILocatiiService _locatiiService;
@@ -60,6 +59,7 @@ namespace Bakery_H.Controllers
         }
 
         // GET: Locatii/Edit/5
+        [Authorize(Policy = "RequireAdministratorRole")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -78,6 +78,7 @@ namespace Bakery_H.Controllers
         // POST: Locatii/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Policy = "RequireAdministratorRole")]
         public async Task<IActionResult> Edit(int id, [Bind("IdLocatie,Nume,Adresa,NumarTelefon,Image")] Locatii locatii)
         {
             if (id != locatii.IdLocatie)
@@ -111,6 +112,7 @@ namespace Bakery_H.Controllers
         }
 
         // GET: Locatii/Delete/5
+        [Authorize(Policy = "RequireAdministratorRole")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -130,6 +132,7 @@ namespace Bakery_H.Controllers
         // POST: Locatii/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Policy = "RequireAdministratorRole")]
         public IActionResult DeleteConfirmed(int id)
         {
             _locatiiService.DeleteLocatie(id);

@@ -16,6 +16,7 @@
 <body>
     @{
         var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+        var userName = User.FindFirstValue(ClaimTypes.Name);
         var profilePictureClaim = User.Claims.FirstOrDefault(c => c.Type == "ProfileImage")?.Value;
     }
     <header>
@@ -86,7 +87,7 @@
                     }
                 </ul>
             </div>
-            <span class="navbar-text">Roxana Albastroiu</span>
+            <span class="navbar-text">@userName</span>
         </nav>
 
     </header>
