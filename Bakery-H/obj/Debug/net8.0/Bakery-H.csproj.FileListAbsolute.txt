@@ -776,3 +776,6 @@ C:\Users\Rox\BakeryHomework\Bakery-H\obj\Debug\net8.0\refint\Bakery-H.dll
 C:\Users\Rox\BakeryHomework\Bakery-H\obj\Debug\net8.0\Bakery-H.pdb
 C:\Users\Rox\BakeryHomework\Bakery-H\obj\Debug\net8.0\Bakery-H.genruntimeconfig.cache
 C:\Users\Rox\BakeryHomework\Bakery-H\obj\Debug\net8.0\ref\Bakery-H.dll
+C:\Users\Rox\BakeryHomework\Bakery-H\bin\Debug\net8.0\Microsoft.Extensions.DependencyInjection.dll
+C:\Users\Rox\BakeryHomework\Bakery-H\bin\Debug\net8.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+C:\Users\Rox\BakeryHomework\Bakery-H\bin\Debug\net8.0\System.Formats.Asn1.dll

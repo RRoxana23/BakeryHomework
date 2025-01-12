@@ -21,6 +21,7 @@ namespace Bakery_Homework.Models
         public DbSet<Clienti> Clienti { get; set; }
         public DbSet<Angajati> Angajati { get; set; }
         public DbSet<Locatii> Locatii { get; set; }
+        public DbSet<DetaliiComanda> DetaliiComanda { get; set; }
         public DbSet<FormulareAngajare> FormulareAngajare { get; set; }
         public DbSet<MetodePlata> MetodePlata { get; set; }
         public DbSet<User> User { get; set; }

@@ -44,6 +44,15 @@
                     <li class="nav-item">
                         <a href="@Url.Action("Index", "Locatii")" class="nav-link">Locatii</a>
                     </li>
+                    @if(User.Identity.IsAuthenticated)
+                    {
+                        <li class="nav-item">
+                            <a href="@Url.Action("Index", "Cos")" class="nav-link">Cos de cumparaturi</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="@Url.Action("Index", "Comenzi")" class="nav-link">Comenzile mele</a>
+                        </li>
+                    }
                     @if (User.IsInRole("Administrator"))
                     {
                         <li class="nav-item">
@@ -135,6 +144,12 @@
                 }
             }
         });
+
+        var userId = '@TempData["userId"]';
+
+        if (userId) {
+            localStorage.setItem('userId', userId);
+        }
     </script>
 </body>
 </html>

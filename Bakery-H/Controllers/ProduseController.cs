@@ -7,7 +7,6 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Bakery_H.Controllers
 {
-    [Authorize(Roles = "Administrator,Client")]
     public class ProduseController : Controller
     {
         private readonly IProduseService _produseService;

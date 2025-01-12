@@ -145,11 +145,8 @@ namespace Bakery_H.Migrations
 
             modelBuilder.Entity("Bakery_Homework.Models.Clienti", b =>
                 {
-                    b.Property<int>("IdClient")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdClient"));
+                    b.Property<string>("IdClient")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Adresa")
                         .HasColumnType("nvarchar(max)");
@@ -175,8 +172,9 @@ namespace Bakery_H.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdComanda"));
 
-                    b.Property<int>("ClientId")
-                        .HasColumnType("int");
+                    b.Property<string>("ClientId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<DateTime?>("DataComanda")
                         .HasColumnType("datetime2");
@@ -196,6 +194,32 @@ namespace Bakery_H.Migrations
                     b.ToTable("Comenzi");
                 });
 
+            modelBuilder.Entity("Bakery_Homework.Models.DetaliiComanda", b =>
+                {
+                    b.Property<int>("IdDetaliiComanda")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdDetaliiComanda"));
+
+                    b.Property<int>("Cantitate")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ComandaId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProdusId")
+                        .HasColumnType("int");
+
+                    b.HasKey("IdDetaliiComanda");
+
+                    b.HasIndex("ComandaId");
+
+                    b.HasIndex("ProdusId");
+
+                    b.ToTable("DetaliiComanda");
+                });
+
             modelBuilder.Entity("Bakery_Homework.Models.FormulareAngajare", b =>
                 {
                     b.Property<int>("IdFormular")
@@ -208,18 +232,23 @@ namespace Bakery_H.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Email")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("LocatieId")
+                        .IsRequired()
                         .HasColumnType("int");
 
                     b.Property<string>("NumarTelefon")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Nume")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Prenume")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("IdFormular");
@@ -334,13 +363,13 @@ namespace Bakery_H.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("6718c45b-e37b-4d88-a1d4-0fadb0a0a319"),
+                            Id = new Guid("e6f6a04e-4306-44ea-bfcb-d50fd3c0f501"),
                             Name = "Client",
                             NormalizedName = "CLIENT"
                         },
                         new
                         {
-                            Id = new Guid("f8556adc-8794-4c5c-b1a7-bbd59ff973b7"),
+                            Id = new Guid("ca884f5e-fc36-40c9-b226-bad86481e286"),
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         });
@@ -510,12 +539,32 @@ namespace Bakery_H.Migrations
                     b.Navigation("MetodaPlata");
                 });
 
+            modelBuilder.Entity("Bakery_Homework.Models.DetaliiComanda", b =>
+                {
+                    b.HasOne("Bakery_Homework.Models.Comenzi", "Comanda")
+                        .WithMany()
+                        .HasForeignKey("ComandaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Bakery_Homework.Models.Produse", "Produs")
+                        .WithMany()
+                        .HasForeignKey("ProdusId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Comanda");
+
+                    b.Navigation("Produs");
+                });
+
             modelBuilder.Entity("Bakery_Homework.Models.FormulareAngajare", b =>
                 {
                     b.HasOne("Bakery_Homework.Models.Locatii", "Locatie")
                         .WithMany()
                         .HasForeignKey("LocatieId")
-                        .OnDelete(DeleteBehavior.SetNull);
+                        .OnDelete(DeleteBehavior.SetNull)
+                        .IsRequired();
 
                     b.Navigation("Locatie");
                 });

@@ -83,6 +83,9 @@ namespace Bakery_H.Controllers
                 var result = await _userService.LoginAsync(model.Email, model.Password);
                 if (result.Succeeded)
                 {
+                    var user = await _userManager.FindByEmailAsync(model.Email);
+
+                    TempData["userId"] = user.Id;
                     TempData["SuccessMessage"] = "Welcome back!";
                     return RedirectToAction("Index", "Home");
                 }

@@ -1,4 +1,5 @@
 ﻿using Bakery_H.Repositories.Interfaces;
+using Bakery_Homework.Models;
 using Bakery_Homework.Repositories;
 using Bakery_Homework.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
@@ -14,6 +15,8 @@ namespace Bakery_H.Repositories
         public IUserRepository User { get; set; }
         public IAngajatiRepository Angajati { get; set; }
         public IFormulareAngajareRepository FormulareAngajare { get; set; }
+        public IClientiRepository Clienti { get; set; }
+        public ICosRepository Cos { get; set; }
 
         public UnitOfWork(DbContext dbContext)
         {
@@ -23,6 +26,8 @@ namespace Bakery_H.Repositories
             User = new UserRepository(dbContext);
             Angajati = new AngajatiRepository(dbContext);
             FormulareAngajare = new FormulareAngajareRepository(dbContext);
+            Clienti = new ClientiRepository(dbContext);
+            Cos = new CosRepository(dbContext);
         }
 
         public async Task SaveChangesAsync()

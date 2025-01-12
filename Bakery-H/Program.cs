@@ -16,6 +16,14 @@ using Azure;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddDistributedMemoryCache();
+builder.Services.AddSession(options =>
+{
+    options.IdleTimeout = TimeSpan.FromMinutes(30);
+    options.Cookie.HttpOnly = true;
+    options.Cookie.IsEssential = true;
+});
+
 builder.Configuration.AddJsonFile("appsettings.json");
 
 builder.Services.AddDbContext<BakeryDbContext>(options =>
@@ -50,6 +58,13 @@ builder.Services.AddScoped<IProduseService, ProduseService>();
 builder.Services.AddScoped<IProduseRepository, ProduseRepository>();
 builder.Services.AddScoped<IFormulareAngajareService, FormulareAngajareService>();
 builder.Services.AddScoped<IFormulareAngajareRepository, FormulareAngajareRepository>();
+builder.Services.AddScoped<ICosRepository, CosRepository>();
+builder.Services.AddScoped<ICosService, CosService>();
+builder.Services.AddScoped<IComenziRepository, ComenziRepository>();
+builder.Services.AddScoped<IComenziService, ComenziService>();
+builder.Services.AddScoped<IDetaliiComandaRepository, DetaliiComandaRepository>();
+builder.Services.AddScoped<IClientiRepository, ClientiRepository>();
+builder.Services.AddScoped<IClientiService, ClientiService>();
 
 
 builder.Services.AddScoped<IUserService, UserService>();
@@ -68,6 +83,8 @@ builder.Services.AddAuthorization(options =>
 });
 
 var app = builder.Build();
+
+app.UseSession();
 
 using (var scope = app.Services.CreateScope())
 {

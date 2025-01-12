@@ -1,0 +1,130 @@
+﻿<h1>Coș de cumpărături</h1>
+
+<table class="table" id="cartTable">
+    <thead>
+        <tr>
+            <th>Produs</th>
+            <th>Imagine</th>
+            <th>Pret</th>
+            <th>Cantitate</th>
+            <th>Total</th>
+            <th>Acțiuni</th>
+        </tr>
+    </thead>
+    <tbody>
+    </tbody>
+</table>
+
+<button class="btn btn-warning" onclick="golesteCos()">Golește coșul</button>
+
+<button class="btn btn-success" onclick="plaseazaComanda()">Plasează comanda</button>
+
+<script>
+    function afiseazaCos() {
+        const cart = JSON.parse(localStorage.getItem('cart')) || [];
+        const tableBody = document.querySelector('#cartTable tbody');
+        tableBody.innerHTML = '';
+
+        cart.forEach((produs, index) => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                    <td>${produs.title}</td>
+                    <td><img src="${produs.image}" alt="Imagine produs" style="width:50px;" /></td>
+                    <td>€${produs.price.toFixed(2)}</td>
+                    <td>${produs.quantity}</td>
+                    <td>€${(produs.price * produs.quantity).toFixed(2)}</td>
+                    <td>
+                        <button class="btn btn-danger" onclick="stergeDinCos(${index})">Șterge</button>
+                    </td>
+                `;
+            tableBody.appendChild(row);
+        });
+    }
+
+    function stergeDinCos(index) {
+        const cart = JSON.parse(localStorage.getItem('cart')) || [];
+        if (cart[index]) {
+            cart.splice(index, 1);
+            localStorage.setItem('cart', JSON.stringify(cart));
+            afiseazaCos();
+        }
+    }
+
+    function golesteCos() {
+        localStorage.removeItem('cart');
+        afiseazaCos();
+        alert('Coșul a fost golit!');
+    }
+
+    document.addEventListener('DOMContentLoaded', afiseazaCos);
+
+    function obtineIdClient(userId) {
+        return fetch(`/api/clienti/ObtineIdClient?userId=${userId}`)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Eroare la obținerea ID-ului clientului.');
+                }
+                return response.json();
+            })
+            .then(data => {
+                if (data.idClient !== undefined) {
+                    return data.idClient;
+                } else {
+                    throw new Error('ID-ul clientului nu a fost găsit.');
+                }
+            });
+    }
+
+    function plaseazaComanda() {
+        const cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+        if (cart.length === 0) {
+            alert('Coșul de cumpărături este gol.');
+            return;
+        }
+
+        const userId = localStorage.getItem('userId');
+
+        if (!userId) {
+            alert('Trebuie să fiți autentificat pentru a plasa o comandă.');
+            return;
+        }
+
+        obtineIdClient(userId)
+            .then(clientId => {
+                const produseDTO = cart.map(produs => ({
+                    IdProdus: produs.id,
+                    Cantitate: produs.quantity,
+                    Pret: produs.price
+                }));
+
+                console.log(clientId)
+
+                const comandaDTO = {
+                    ClientId: clientId,
+                    MetodaPlata: 1,
+                    Produse: produseDTO
+                };
+
+                return fetch('/api/comenzi/PlaseazaComanda', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(comandaDTO)
+                });
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert('Comanda a fost plasată cu succes!');
+                    localStorage.removeItem('cart');
+                    location.reload();
+                } else {
+                    alert('Eroare la plasarea comenzii: ' + data.message);
+                }
+            })
+            .catch(error => {
+                console.error('Eroare:', error);
+                alert('A apărut o eroare!');
+            });
+    }
+</script>

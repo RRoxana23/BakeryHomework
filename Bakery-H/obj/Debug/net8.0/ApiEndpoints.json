@@ -1,1 +1,54 @@
-[]
+[
+  {
+    "ContainingType": "Bakery_H.Controllers.ClientiController",
+    "Method": "GetClientByUserId",
+    "RelativePath": "api/clienti/ObtineIdClient",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userId",
+        "Type": "System.Guid",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Bakery_H.Controllers.ComenziController",
+    "Method": "Index",
+    "RelativePath": "api/Comenzi",
+    "HttpMethod": "",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Bakery_H.Controllers.ComenziController",
+    "Method": "GetUserOrders",
+    "RelativePath": "api/Comenzi/GetUserOrders",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Bakery_H.Controllers.ComenziController",
+    "Method": "PlaseazaComanda",
+    "RelativePath": "api/Comenzi/PlaseazaComanda",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "comandaDto",
+        "Type": "Bakery_Homework.DTOs.ComandaDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  }
+]

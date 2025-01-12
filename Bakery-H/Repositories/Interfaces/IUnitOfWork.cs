@@ -10,6 +10,8 @@ namespace Bakery_H.Repositories.Interfaces
         IUserRepository User { get; }
         IAngajatiRepository Angajati { get; }
         IFormulareAngajareRepository FormulareAngajare { get; }
+        IClientiRepository Clienti { get; }
+        ICosRepository Cos { get; }
         Task SaveChangesAsync();
     }
 }
